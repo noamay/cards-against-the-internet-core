@@ -1,8 +1,13 @@
+import datetime
+
+
 class Player:
-    def __init__(self, name):
+    def __init__(self, name: str, last_poop: datetime.datetime, player_id: int):
         self.name = name
+        self.id = player_id
         self.hand = []
-        self.awesome_points = 0
+        self.ap = 0
+        self.last_poop = last_poop
     
 
     def draw_card_to_hand(self,card):
