@@ -1,3 +1,4 @@
+from constants import CardType
 from models.Cards import Deck
 from models.Player import Player
 
@@ -18,3 +19,10 @@ class GameSession:
 
     def _get_current_tzar(self):
         return self.players[self.current_tzar]
+
+    def draw_black_card(self):
+        self.black_card = self.deck.draw_random_card(CardType.BLACK)
+        return self.black_card
+
+    def draw_cards(self, cards_amount: int = 1):
+        return [self.deck.draw_random_card(CardType.WHITE) for _ in range(cards_amount)]
