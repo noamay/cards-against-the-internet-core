@@ -19,13 +19,16 @@ class GameSession:
         self.current_round = None
         self.status = SessionStatus.WAITING
         self.current_tzar_index = 0
+        self.session_id = None
+        # TODO - Generate Session ID
 
     def _get_next_tzar(self):
         self.current_tzar_index += 1
         if self.current_tzar_index >= len(self.players):
             self.current_tzar_index = 0
         return self.players[self.current_tzar_index]
-    def add_player(self, player_name: str, player_time_of_poop: datetime.datetime):
+
+    def add_player(self, player_name: str, player_time_of_poop: datetime.datetime) -> Player:
         new_player = Player(player_name, player_time_of_poop, len(self.players) + 1)
         self.players.append(new_player)
         return new_player
@@ -42,3 +45,7 @@ class GameSession:
         current_round = Round(black_card, self.players, tzar or self._get_next_tzar())
         # TODO - start round
 
+    @staticmethod
+    def get_game_session_by_id(session_id: str) -> "GameSession":
+        # TODO - Get session by ID
+        pass

@@ -1,6 +1,6 @@
 # Test your FastAPI endpoints
 
-GET http://127.0.0.1:8000/
+GET http://127.0.0.1:8000/api/new_game/?admin_name=Admin&admin_time_of_poop=2020-01-01T00:00:00Z&pack_ids=[0,1,2]
 Accept: application/json
 
 ###
@@ -9,3 +9,13 @@ GET http://127.0.0.1:8000/hello/User
 Accept: application/json
 
 ###
+
+POST http://127.0.0.1:8000/api/new_game/
+Content-Type: application/json
+Accept: application/json
+
+{
+    "admin_name": "Admin",
+    "admin_time_of_poop": "2020-01-01T00:00:00Z",
+    "pack_ids": [0,1,2]
+}
