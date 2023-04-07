@@ -25,7 +25,7 @@ class BlackCard(Card):
         self.pick = card.get('pick')
         self.type = CardType.BLACK
 
-    def get_combination(self, white_card: WhiteCard):
+    def get_combination(self, white_card: WhiteCard) -> str:
         return self.text.replace("_", white_card.text)
 
 
@@ -48,14 +48,14 @@ class Deck:
         self.white_cards = [WhiteCard(stock_white_cards[i]) for i in white_cards_ids]
         self.black_cards = [BlackCard(stock_black_cards[i]) for i in black_cards_ids]
 
-    def draw_random_card(self, card_type: CardType = CardType.WHITE):
+    def draw_random_cards(self, card_type: CardType = CardType.WHITE, amount: int = 1) -> list[Card] or Card:
         if card_type == CardType.WHITE:
-            return self.white_cards.pop(random.randint(0, len(self.white_cards) - 1))
-        else:
-            return self.black_cards.pop(random.randint(0, len(self.white_cards) - 1))
+            return [self.white_cards.pop(random.randint(0, len(self.white_cards) - 1)) for _ in
+                    range(amount)]
+        return self.black_cards.pop(random.randint(0, len(self.black_cards) - 1))
 
 
 if __name__ == '__main__':
     my_deck = Deck(DEFAULT_PACK)
     print(my_deck.black_cards)
-    print(my_deck.draw_random_card(CardType.WHITE))
+    print(my_deck.draw_random_cards(CardType.WHITE))
