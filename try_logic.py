@@ -1,16 +1,18 @@
 import random
-white_deck = [] #load deck json
-black_deck = [] #load black deck
-player_hand = []
+from models.Player import Player
+from models.Cards import Deck
+from models.GameSession import GameSession
 
-class game:
-    def deal_cards(self,turn):
-        card = random.choice(white_deck)
-        turn.append(card)
-        white_deck.remove(card)
-    
-    def play_card(self,player_hand,card):
+gs = GameSession()
+
+class Game_Logic:
+    def deal_cards(self, turn):
+        for player in gs.players:
+            while len(player.hand) < 10:
+                Player.draw_card_to_hand()
+
+
+    def play_card(self, player_hand, card):
         player_hand.remove(card)
-    
 
-#maybe use gTTs to read out cards?
+# maybe use gTTs to read out cards?
