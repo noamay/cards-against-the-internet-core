@@ -12,8 +12,8 @@ class GameSession:
         self.deck = Deck(pack_ids)
         self.admin = Player(admin_name, admin_time_of_poop, 0)
         self.players = [self.admin]
-        self.max_rounds = max_rounds #is this really needed?
-        self.max_ap = max_ap
+        self.max_rounds = max_rounds  # Session Rounds Limit - 0 means no limit
+        self.max_ap = max_ap  # Session AP Limit - 0 means no limit
         self.round_count = 0
         self.past_rounds = []
         self.current_round = None
