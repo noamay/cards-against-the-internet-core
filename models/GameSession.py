@@ -1,4 +1,6 @@
 import datetime
+import string
+import secrets
 
 from constants import CardType, SessionStatus
 from models.Cards import Deck
@@ -7,7 +9,7 @@ from models.Round import Round
 
 
 class GameSession:
-    def __init__(self, pack_ids: list[int], admin_name: str, admin_time_of_poop: datetime.datetime,
+    def __init__(self,session_id, pack_ids: list[int], admin_name: str, admin_time_of_poop: datetime.datetime,
                  max_rounds: int = 0, max_ap: int = 10):
         self.deck = Deck(pack_ids)
         self.admin = Player(admin_name, admin_time_of_poop, 0)
@@ -19,7 +21,9 @@ class GameSession:
         self.current_round = None
         self.status = SessionStatus.WAITING
         self.current_tzar_index = 0
-        self.session_id = None
+#        if session_id is None:
+#            session_id = self.generate_random_session_id()
+        self.session_id = self.generate_random_session_id()
         # TODO - Generate Session ID
 
     def _get_next_tzar(self):
@@ -45,7 +49,22 @@ class GameSession:
         current_round = Round(black_card, self.players, tzar or self._get_next_tzar())
         # TODO - start round
 
+#    @staticmethod
+#    def get_game_session_by_id(session_id: str) -> "GameSession":
+        # TO#DO - Get session by ID
+#
+#        pass
+
     @staticmethod
     def get_game_session_by_id(session_id: str) -> "GameSession":
-        # TODO - Get session by ID
-        pass
+        game_session_id = GameSession.get(session_id) #Get session by ID
+        if game_session_id is None:
+            print(f"Game session with ID '{session_id}' not found.") #Do something
+        else:
+            return game_session_id
+
+    @staticmethod
+    def generate_random_session_id(length: int = 6) -> str:
+        characters = string.ascii_letters + string.digits
+        session_id = ''.join(secrets.choice(characters) for _ in range(length)) #Generate a secure random session ID
+        return session_id
