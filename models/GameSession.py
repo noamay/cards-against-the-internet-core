@@ -51,7 +51,6 @@ class GameSession:
 
 #    @staticmethod
 #    def get_game_session_by_id(session_id: str) -> "GameSession":
-        # TO#DO - Get session by ID
 #
 #        pass
 
