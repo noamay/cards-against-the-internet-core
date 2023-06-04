@@ -6,6 +6,7 @@ from typing import List
 from models.GameSession import GameSession
 from api.schemas import StartGameRequest, JoinGameRequest
 from fastapi.middleware.cors import CORSMiddleware
+from api.routes import router
 
 app = FastAPI()
 
@@ -20,7 +21,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
+app.include_router(router, prefix="/apiv2")
 
 @app.get("/")
 async def root():
@@ -36,7 +37,7 @@ async def start_new_session(data: StartGameRequest):
 
 
 @app.post("/api/join-game/")
-async def join_session(data: PlayerRequest):
+async def join_session(data: JoinGameRequest):
     # TODO - Needs to be able to join a session and get a websocket connection
     print(data)
     # session = GameSession.get_game_session_by_id(data.session_id)

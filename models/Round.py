@@ -1,8 +1,18 @@
+from pydantic import BaseModel
+
 from models.Cards import BlackCard, WhiteCard
 from models.Player import Player
 
 
-class Round:
+class Round(BaseModel):
+    players: list[Player]
+    submissions: dict[Player, list[WhiteCard]]
+    winner: Player = None
+    tzar: Player
+    black_card: BlackCard
+
+
+class Grave:
     def __init__(self, black_card: BlackCard, players: list[Player], tzar: Player):
         self.players = players
         self.submissions = {}
