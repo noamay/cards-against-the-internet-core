@@ -1,6 +1,6 @@
 import datetime
 
-from constants import CardType, SessionStatus
+from utils.constants import CardType, SessionStatus
 from models.Cards import Deck
 from models.Player import Player
 from models.Round import Round

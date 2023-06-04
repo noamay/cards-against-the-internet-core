@@ -1,5 +1,4 @@
 import datetime
-
 from pydantic import BaseModel
 from pydantic.class_validators import Optional
 
@@ -12,7 +11,7 @@ class StartGameRequest(BaseModel):
     max_ap: Optional[int] = 10  # 0 means no limit
 
 
-class PlayerRequest(BaseModel):
+class JoinGameRequest(BaseModel):
     name: str
     last_poop: datetime.datetime
     session_id: str

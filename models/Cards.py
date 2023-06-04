@@ -2,7 +2,7 @@ import json
 import random
 from abc import ABC
 
-from constants import CARDS_JSON_LOCATION, CardType, DEFAULT_PACK
+from utils.constants import CARDS_JSON_LOCATION, CardType, DEFAULT_PACK
 
 
 class Card(ABC):
