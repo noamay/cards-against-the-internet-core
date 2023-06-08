@@ -7,11 +7,6 @@ CARDS_JSON_LOCATION = Path(PROJECT_ROOT + "/cah-all-compact.json").resolve()
 DEFAULT_PACK = [1, 2]
 
 
-class CardType(Enum):
-    WHITE = 0
-    BLACK = 1
-
-
 class SessionStatus(Enum):
     WAITING = 0
     STARTED = 1

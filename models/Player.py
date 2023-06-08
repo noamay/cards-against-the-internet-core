@@ -1,21 +1,15 @@
 import datetime
-import random
-from models.Cards import Deck
+
+from pydantic import BaseModel
 
 
-class Player:
-    def __init__(self, name: str, last_poop: datetime.datetime, player_id: int):
-        self.name = name
-        self.id = player_id
-        self.hand = []
-        self.ap = 0
-        self.last_poop = last_poop
+class Player(BaseModel):
+    name: str
+    id: str
+    hand: list = []
+    ap: int = 0
+    last_poop: datetime.datetime
+    admin: bool = False
 
     def draw_card_to_hand(self, card):  # should be implemented in game logic instead imo --> THATS EXACTLY WHY THE LOGIC WAS JUST TO RECEIVE A CARD.
         self.hand.append(card)
-
-    def calc_AP(self, name):
-        a = 0  # not sure what to do here yet
-
-    def reset_hand(self):
-        self.hand = []
