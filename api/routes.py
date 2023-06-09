@@ -7,7 +7,7 @@ from services.Game import create_game, join_game
 router = APIRouter()
 
 
-@router.get("/create_game")
+@router.post("/create-game")
 async def create_game_route(game_request: StartGameRequest):
     return create_game(game_request)
 

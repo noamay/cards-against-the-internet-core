@@ -8,7 +8,7 @@ from utils.utils import generate_random_id
 game_sessions = {}
 
 
-async def create_game(data: StartGameRequest):
+def create_game(data: StartGameRequest):
     game_deck = Deck(pack_ids=data.pack_ids)
     session = GameSession(deck=game_deck, max_rounds=data.max_rounds, max_ap=data.max_ap,
                           session_id=generate_random_id(6, list(game_sessions.keys())))
