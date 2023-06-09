@@ -30,11 +30,3 @@ class SessionNotFoundException(Exception):
     # No session found with the given ID
     pass
 
-
-if __name__ == '__main__':
-    # test game creation
-    _data = StartGameRequest(pack_ids=[1, 2, 3], admin_name="test", admin_time_of_poop="2021-10-10T10:10:10.000Z",
-                            max_rounds=10, max_ap=10)
-    session = asyncio.run(create_game(_data))
-    session.start_session()
-    print(game_sessions)
