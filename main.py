@@ -44,10 +44,3 @@ async def join_session(data: JoinGameRequest):
     # player = session.add_player(data.name, data.last_poop)
     return {"message": f"Hello {data.name}"}
 
-
-@app.websocket("/ws")
-async def websocket_endpoint(websocket):
-    # TODO - WebSocket Interface for Screen & Players
-    await websocket.accept()
-    await websocket.send_text("Hello WebSocket!")
-    await websocket.close()

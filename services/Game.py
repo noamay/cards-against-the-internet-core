@@ -8,7 +8,7 @@ from utils.utils import generate_random_id
 game_sessions = {}
 
 
-async def create_game(data: StartGameRequest):
+def create_game(data: StartGameRequest):
     game_deck = Deck(pack_ids=data.pack_ids)
     session = GameSession(deck=game_deck, max_rounds=data.max_rounds, max_ap=data.max_ap,
                           session_id=generate_random_id(6, list(game_sessions.keys())))
@@ -35,6 +35,6 @@ if __name__ == '__main__':
     # test game creation
     _data = StartGameRequest(pack_ids=[1, 2, 3], admin_name="test", admin_time_of_poop="2021-10-10T10:10:10.000Z",
                             max_rounds=10, max_ap=10)
-    session = asyncio.run(create_game(_data))
-    session.start_session()
+    _session = create_game(_data)
+    _session.start_session()
     print(game_sessions)
