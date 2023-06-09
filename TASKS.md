@@ -15,5 +15,5 @@ _This file is still in progress. It will be updated as the project progresses._
 * Game State
 
 ## Micro Tasks
-* [ ] Session ID Generation & Get an active session by ID
+* [X] Session ID Generation & Get an active session by ID
 * [ ] Join Session By ID

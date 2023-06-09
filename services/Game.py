@@ -13,15 +13,17 @@ def create_game(data: StartGameRequest):
     session = GameSession(deck=game_deck, max_rounds=data.max_rounds, max_ap=data.max_ap,
                           session_id=generate_random_id(6, list(game_sessions.keys())))
     session.add_player(player_name=data.admin_name, time_of_poop=data.admin_time_of_poop, admin=True)
+    print(GameSession)
     game_sessions[session.session_id] = session
     return session
 
 
-async def join_game(data: JoinGameRequest):
+def join_game(data: JoinGameRequest):
     session = game_sessions.get(data.session_id, None)
     if not session:
         raise SessionNotFoundException
-    # TODO - add logic for joining a game in progress
+    if session.status != "waiting":
+        raise Exception("Game already started")
     session.add_player(player_name=data.name, time_of_poop=data.last_poop)
     return session
 
