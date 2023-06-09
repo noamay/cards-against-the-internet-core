@@ -1,8 +1,4 @@
-import datetime
-
 from fastapi import FastAPI
-from typing import List
-
 from models.GameSession import GameSession
 from api.schemas import StartGameRequest, JoinGameRequest
 from fastapi.middleware.cors import CORSMiddleware
@@ -22,6 +18,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(router, prefix="/apiv2")
+
 
 @app.get("/")
 async def root():
